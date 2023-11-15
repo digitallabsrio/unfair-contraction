@@ -1,0 +1,3960 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <style type="text/css">
+    :root {
+      --docsifytabs-border-color: #ededed;
+      --docsifytabs-border-px: 1px;
+      --docsifytabs-border-radius-px: ;
+      --docsifytabs-margin: 1.5em 0;
+      --docsifytabs-tab-background: #f8f8f8;
+      --docsifytabs-tab-background--active: var(--docsifytabs-content-background);
+      --docsifytabs-tab-color: #999;
+      --docsifytabs-tab-color--active: inherit;
+      --docsifytabs-tab-highlight-px: 3px;
+      --docsifytabs-tab-highlight-color: var(--theme-color, currentColor);
+      --docsifytabs-tab-padding: 0.6em 1em;
+      --docsifytabs-content-background: inherit;
+      --docsifytabs-content-padding: 1.5rem
+    }
+
+    .docsify-tabs:before,
+    .docsify-tabs__tab {
+      z-index: 1
+    }
+
+    .docsify-tabs__tab--active,
+    .docsify-tabs__tab:focus {
+      z-index: 2
+    }
+
+    .docsify-tabs {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      position: relative
+    }
+
+    .docsify-tabs:before {
+      -ms-flex-order: 0;
+      content: "";
+      -ms-flex: 1 1;
+      flex: 1 1;
+      order: 0
+    }
+
+    .docsify-tabs__tab {
+      -ms-flex-order: -1;
+      appearance: none;
+      font-size: inherit;
+      margin: 0;
+      order: -1;
+      position: relative
+    }
+
+    .docsify-tabs__content[class] {
+      height: 0;
+      overflow: hidden;
+      position: absolute;
+      visibility: hidden;
+      width: 100%
+    }
+
+    .docsify-tabs__content[class]>:first-child {
+      margin-top: 0
+    }
+
+    .docsify-tabs__content[class]>:last-child {
+      margin-bottom: 0
+    }
+
+    .docsify-tabs__tab--active+.docsify-tabs__content[class] {
+      height: auto;
+      overflow: auto;
+      position: relative;
+      visibility: visible
+    }
+
+    [class*=docsify-tabs--] {
+      margin: 1.5em 0;
+      margin: var(--docsifytabs-margin)
+    }
+
+    [class*=docsify-tabs--]>.docsify-tabs__tab {
+      background: #f8f8f8;
+      background: var(--docsifytabs-tab-background);
+      color: #999;
+      color: var(--docsifytabs-tab-color);
+      padding: .6em 1em;
+      padding: var(--docsifytabs-tab-padding)
+    }
+
+    [class*=docsify-tabs--]>.docsify-tabs__tab--active {
+      background: inherit;
+      background: var(--docsifytabs-tab-background--active);
+      color: inherit;
+      color: var(--docsifytabs-tab-color--active)
+    }
+
+    [class*=docsify-tabs--]>.docsify-tabs__content {
+      background: inherit;
+      background: var(--docsifytabs-content-background)
+    }
+
+    [class*=docsify-tabs--]>.docsify-tabs__tab--active+.docsify-tabs__content {
+      padding: 1.5rem;
+      padding: var(--docsifytabs-content-padding)
+    }
+
+    .docsify-tabs--classic:before,
+    .docsify-tabs--classic>.docsify-tabs__content,
+    .docsify-tabs--classic>.docsify-tabs__tab {
+      border-color: #ededed;
+      border-color: var(--docsifytabs-border-color);
+      border-style: solid;
+      border-width: 1px;
+      border-width: var(--docsifytabs-border-px)
+    }
+
+    .docsify-tabs--classic:before {
+      border-left-width: 0;
+      border-right-width: 0;
+      border-top-width: 0;
+      margin-right: 1px;
+      margin-right: var(--docsifytabs-border-px)
+    }
+
+    .docsify-tabs--classic>.docsify-tabs__tab:first-of-type {
+      border-top-left-radius: var(--docsifytabs-border-radius-px)
+    }
+
+    .docsify-tabs--classic>.docsify-tabs__tab:last-of-type {
+      border-top-right-radius: var(--docsifytabs-border-radius-px)
+    }
+
+    .docsify-tabs--classic>.docsify-tabs__tab~.docsify-tabs__tab {
+      margin-left: -1px;
+      margin-left: calc(0px - var(--docsifytabs-border-px))
+    }
+
+    .docsify-tabs--classic>.docsify-tabs__tab--active {
+      border-bottom-width: 0;
+      box-shadow: inset 0 3px 0 0 currentColor;
+      box-shadow: inset 0 var(--docsifytabs-tab-highlight-px) 0 0 var(--docsifytabs-tab-highlight-color)
+    }
+
+    .docsify-tabs--classic>.docsify-tabs__content {
+      border-radius: 0;
+      border-radius: 0 var(--docsifytabs-border-radius-px) var(--docsifytabs-border-radius-px) var(--docsifytabs-border-radius-px);
+      border-top: 0;
+      margin-top: -1px;
+      margin-top: calc(0px - var(--docsifytabs-border-px))
+    }
+
+    .docsify-tabs--material>.docsify-tabs__tab {
+      background: transparent;
+      border: 0;
+      margin-bottom: 2px;
+      margin-bottom: calc(var(--docsifytabs-tab-highlight-px) - var(--docsifytabs-border-px))
+    }
+
+    .docsify-tabs--material>.docsify-tabs__tab--active {
+      background: transparent;
+      box-shadow: 0 3px 0 0 currentColor;
+      box-shadow: 0 var(--docsifytabs-tab-highlight-px) 0 0 var(--docsifytabs-tab-highlight-color)
+    }
+
+    .docsify-tabs--material>.docsify-tabs__content {
+      border-color: #ededed;
+      border-color: var(--docsifytabs-border-color);
+      border-style: solid;
+      border-width: 1px 0;
+      border-width: var(--docsifytabs-border-px) 0
+    }
+  </style>
+  <!-- UPDATE: Add description, author, og:site_name, og:title, and og:description text for your course. -->
+  <!-- NOTE: Text presented in ALL_CAPS indicate values you should replace. -->
+  <title>Project</title>
+  <link rel="stylesheet" href="/unfair-contraction/static/vue.css">
+  <link rel="stylesheet" href="/unfair-contraction/static/style.min.css" title="docsify-darklight-theme" type="text/css">
+  <style type="text/css">
+    .docsify-copy-code-button,
+    .docsify-copy-code-button span {
+      cursor: pointer;
+      transition: all .25s ease
+    }
+
+    .docsify-copy-code-button {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      overflow: visible;
+      padding: .65em .8em;
+      border: 0;
+      border-radius: 0;
+      outline: 0;
+      font-size: 1em;
+      background: grey;
+      background: var(--theme-color, grey);
+      color: #fff;
+      opacity: 0
+    }
+
+    .docsify-copy-code-button span {
+      border-radius: 3px;
+      background: inherit;
+      pointer-events: none
+    }
+
+    .docsify-copy-code-button .error,
+    .docsify-copy-code-button .success {
+      position: absolute;
+      z-index: -100;
+      top: 50%;
+      right: 0;
+      padding: .5em .65em;
+      font-size: .825em;
+      opacity: 0;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%)
+    }
+
+    .docsify-copy-code-button.error .error,
+    .docsify-copy-code-button.success .success {
+      right: 100%;
+      opacity: 1;
+      -webkit-transform: translate(-115%, -50%);
+      transform: translate(-115%, -50%)
+    }
+
+    .docsify-copy-code-button:focus,
+    pre:hover .docsify-copy-code-button {
+      opacity: 1
+    }
+  </style>
+  <style type="text/css">
+    .alert {
+      word-wrap: break-word;
+      display: block;
+      margin-bottom: 1rem !important;
+      padding: .75rem 1.25rem !important;
+      position: relative;
+      word-break: break-word
+    }
+
+    .alert>* {
+      max-width: 100%
+    }
+
+    .alert>:first-child {
+      margin-top: 0
+    }
+
+    .alert>:last-child {
+      margin-bottom: 0
+    }
+
+    .alert:before {
+      content: unset !important
+    }
+
+    .alert+.alert {
+      margin-top: -.25rem !important
+    }
+
+    .alert p {
+      margin-bottom: .5rem;
+      margin-top: .5rem
+    }
+
+    .alert .title {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      font-weight: 600;
+      margin: 0
+    }
+
+    .icon {
+      background-repeat: no-repeat;
+      display: inline-block;
+      height: 16px;
+      margin-right: .5rem;
+      width: 16px
+    }
+
+    .alert.callout {
+      background: var(--background);
+      border: 1px solid #eee;
+      border-left-width: .25rem;
+      border-radius: .25rem
+    }
+
+    .alert.callout.note {
+      border-left-color: #17a2b8 !important
+    }
+
+    .alert.callout.note .title {
+      color: #17a2b8
+    }
+
+    .alert.callout.note .icon-note {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='1em' height='1em' viewBox='0 0 16 16' fill='%2317a2b8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z'/%3E%3C/svg%3E")
+    }
+
+    .alert.callout.tip {
+      border-left-color: #28a745 !important
+    }
+
+    .alert.callout.tip .title {
+      color: #28a745
+    }
+
+    .alert.callout.tip .icon-tip {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='1em' height='1em' viewBox='0 0 352 512' fill='%2328a745' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z'/%3E%3C/svg%3E")
+    }
+
+    .alert.callout.warning {
+      border-left-color: #f0ad4e !important
+    }
+
+    .alert.callout.warning .title {
+      color: #f0ad4e
+    }
+
+    .alert.callout.warning .icon-warning {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='1em' height='1em' viewBox='0 0 17 16' fill='%23f0ad4e' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' d='M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 5zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z'/%3E%3C/svg%3E")
+    }
+
+    .alert.callout.attention {
+      border-left-color: #dc3545 !important
+    }
+
+    .alert.callout.attention .title {
+      color: #dc3545
+    }
+
+    .alert.callout.attention .icon-attention {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='1em' height='1em' viewBox='0 0 16 16' fill='%23dc3545' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/%3E%3Cpath fill-rule='evenodd' d='M11.354 4.646a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708l6-6a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E")
+    }
+
+    .alert.flat {
+      background-color: #e2e3e5;
+      border: 1px solid #d6d8db;
+      border-radius: .125rem;
+      color: #383d41
+    }
+
+    .alert.flat.note {
+      background-color: #cdeefd;
+      border-color: #b4e6fc;
+      color: #02587f
+    }
+
+    .alert.flat.note .title {
+      color: #01354d
+    }
+
+    .alert.flat.note .icon-note {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='1em' height='1em' viewBox='0 0 16 16' fill='%2301354d' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z'/%3E%3C/svg%3E")
+    }
+
+    .alert.flat.tip {
+      background-color: #dbefdc;
+      border-color: #c9e7cb;
+      color: #285b2a
+    }
+
+    .alert.flat.tip .title {
+      color: #18381a
+    }
+
+    .alert.flat.tip .icon-tip {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='1em' height='1em' viewBox='0 0 352 512' fill='%2318381a' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z'/%3E%3C/svg%3E")
+    }
+
+    .alert.flat.warning {
+      background-color: #ffddd3;
+      border-color: #ffc9ba;
+      color: #852d12
+    }
+
+    .alert.flat.warning .title {
+      color: #581e0c
+    }
+
+    .alert.flat.warning .icon-warning {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='1em' height='1em' viewBox='0 0 17 16' fill='%23581e0c' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' d='M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 5zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z'/%3E%3C/svg%3E")
+    }
+
+    .alert.flat.attention {
+      background-color: #fdd9d7;
+      border-color: #fcc2bf;
+      color: #7f231c
+    }
+
+    .alert.flat.attention .title {
+      color: #551713
+    }
+
+    .alert.flat.attention .icon-attention {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='1em' height='1em' viewBox='0 0 16 16' fill='%23551713' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/%3E%3Cpath fill-rule='evenodd' d='M11.354 4.646a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708l6-6a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E")
+    }
+  </style>
+  <style>
+    :root {
+      --theme-color: #126893;
+    }
+  </style>
+  <style>
+    .sidebar {
+      padding-top: 0;
+    }
+
+    .search {
+      margin-bottom: 20px;
+      padding: 6px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .search .input-wrap {
+      display: flex;
+      align-items: center;
+    }
+
+    .search .results-panel {
+      display: none;
+    }
+
+    .search .results-panel.show {
+      display: block;
+    }
+
+    .search input {
+      outline: none;
+      border: none;
+      width: 100%;
+      padding: 0.6em 7px;
+      font-size: inherit;
+      border: 1px solid transparent;
+    }
+
+    .search input:focus {
+      box-shadow: 0 0 5px var(--theme-color, #42b983);
+      border: 1px solid var(--theme-color, #42b983);
+    }
+
+    .search input::-webkit-search-decoration,
+    .search input::-webkit-search-cancel-button,
+    .search input {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    .search input::-ms-clear {
+      display: none;
+      height: 0;
+      width: 0;
+    }
+
+    .search .clear-button {
+      cursor: pointer;
+      width: 36px;
+      text-align: right;
+      display: none;
+    }
+
+    .search .clear-button.show {
+      display: block;
+    }
+
+    .search .clear-button svg {
+      transform: scale(.5);
+    }
+
+    .search h2 {
+      font-size: 17px;
+      margin: 10px 0;
+    }
+
+    .search a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .search .matching-post {
+      border-bottom: 1px solid #eee;
+    }
+
+    .search .matching-post:last-child {
+      border-bottom: 0;
+    }
+
+    .search p {
+      font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .search p.empty {
+      text-align: center;
+    }
+
+    .app-name.hide,
+    .sidebar-nav.hide {
+      display: none;
+    }
+  </style>
+  <style></style>
+  <style></style>
+  <style></style>
+  <style></style>
+  <style></style>
+  <style></style>
+  <style></style>
+  <style></style>
+  <style></style>
+  <style></style>
+  <style></style>
+  <style></style>
+</head>
+
+<body class="ready sticky ready-fix close" data-page="Assignments/Sample_Project.md">
+  <nav class="app-nav"></nav>
+  <main><button class="sidebar-toggle" aria-label="Menu">
+      <div class="sidebar-toggle-button"><span></span><span></span><span></span></div>
+    </button>
+    <aside class="sidebar">
+      <h1 class="app-name"><a class="app-name-link" data-nosearch="" href="/"><img alt="Syllabus Template"
+            src="/unfair-contraction/static/logo-icononly.svg"></a></h1>
+      <div class="sidebar-nav">
+    <ul>
+        <li><strong><a href="/" title="Syllabus">Syllabus</a></strong></li>
+        <li><strong>Lessons</strong>
+            <ul>
+                
+                
+                <li><a href="/unfair-contraction/0-preface real talk/0-preface real talk.html" title="Preface Real Talk">Preface Real Talk</a></li>
+                
+                
+                <li><a href="/unfair-contraction/1-introduction your coding career/1-introduction your coding career.html" title="Introduction Your Coding Career">Introduction Your Coding Career</a></li>
+                
+                
+                <li><a href="/unfair-contraction/2-principles over titles/2-principles over titles.html" title="Principles Over Titles">Principles Over Titles</a></li>
+                
+                
+                <li><a href="/unfair-contraction/3-company types/3-company types.html" title="Company Types">Company Types</a></li>
+                
+                
+                <li><a href="/unfair-contraction/4-career layers/4-career layers.html" title="Career Layers">Career Layers</a></li>
+                
+                
+                <li><a href="/unfair-contraction/5-diversity/5-diversity.html" title="Diversity">Diversity</a></li>
+                
+                
+                <li><a href="/unfair-contraction/6-the five career stages/6-the five career stages.html" title="The Five Career Stages">The Five Career Stages</a></li>
+                
+                
+                <li><a href="/unfair-contraction/7-quiz yourself on your coding career/7-quiz yourself on your coding career.html" title="Quiz Yourself On Your Coding Career">Quiz Yourself On Your Coding Career</a></li>
+                
+                
+                <li><a href="/unfair-contraction/8-introduction code newbies/8-introduction code newbies.html" title="Introduction Code Newbies">Introduction Code Newbies</a></li>
+                
+                
+                <li><a href="/unfair-contraction/9-explore podcasts and content/9-explore podcasts and content.html" title="Explore Podcasts And Content">Explore Podcasts And Content</a></li>
+                
+                
+                <li><a href="/unfair-contraction/10-build community/10-build community.html" title="Build Community">Build Community</a></li>
+                
+                
+                <li><a href="/unfair-contraction/11-gain team experience/11-gain team experience.html" title="Gain Team Experience">Gain Team Experience</a></li>
+                
+                
+                <li><a href="/unfair-contraction/12-introduction the first job hunt/12-introduction the first job hunt.html" title="Introduction The First Job Hunt">Introduction The First Job Hunt</a></li>
+                
+                
+                <li><a href="/unfair-contraction/13-do the math/13-do the math.html" title="Do The Math">Do The Math</a></li>
+                
+                
+                <li><a href="/unfair-contraction/14-do the work/14-do the work.html" title="Do The Work">Do The Work</a></li>
+                
+                
+                <li><a href="/unfair-contraction/15-staying motivated while you search/15-staying motivated while you search.html" title="Staying Motivated While You Search">Staying Motivated While You Search</a></li>
+                
+                
+                <li><a href="/unfair-contraction/16-getting the interview/16-getting the interview.html" title="Getting The Interview">Getting The Interview</a></li>
+                
+                
+                <li><a href="/unfair-contraction/17-types of interviews/17-types of interviews.html" title="Types Of Interviews">Types Of Interviews</a></li>
+                
+                
+                <li><a href="/unfair-contraction/18-outside the interview/18-outside the interview.html" title="Outside The Interview">Outside The Interview</a></li>
+                
+                
+                <li><a href="/unfair-contraction/19-quiz yourself on the first job hunt/19-quiz yourself on the first job hunt.html" title="Quiz Yourself On The First Job Hunt">Quiz Yourself On The First Job Hunt</a></li>
+                
+                
+                <li><a href="/unfair-contraction/20-introduction junior developer/20-introduction junior developer.html" title="Introduction Junior Developer">Introduction Junior Developer</a></li>
+                
+                
+                <li><a href="/unfair-contraction/21-finding your groove/21-finding your groove.html" title="Finding Your Groove">Finding Your Groove</a></li>
+                
+                
+                <li><a href="/unfair-contraction/22-making mistakes/22-making mistakes.html" title="Making Mistakes">Making Mistakes</a></li>
+                
+                
+                <li><a href="/unfair-contraction/23-adding value/23-adding value.html" title="Adding Value">Adding Value</a></li>
+                
+                
+                <li><a href="/unfair-contraction/24-growing your knowledge/24-growing your knowledge.html" title="Growing Your Knowledge">Growing Your Knowledge</a></li>
+                
+                
+                <li><a href="/unfair-contraction/25-quiz yourself on junior developer/25-quiz yourself on junior developer.html" title="Quiz Yourself On Junior Developer">Quiz Yourself On Junior Developer</a></li>
+                
+                
+                <li><a href="/unfair-contraction/26-introduction from junior to senior/26-introduction from junior to senior.html" title="Introduction From Junior To Senior">Introduction From Junior To Senior</a></li>
+                
+                
+                <li><a href="/unfair-contraction/27-acting for the job you want/27-acting for the job you want.html" title="Acting For The Job You Want">Acting For The Job You Want</a></li>
+                
+                
+                <li><a href="/unfair-contraction/28-marketing yourself as a senior engineer/28-marketing yourself as a senior engineer.html" title="Marketing Yourself As A Senior Engineer">Marketing Yourself As A Senior Engineer</a></li>
+                
+                
+                <li><a href="/unfair-contraction/29-junior engineer senior engineer/29-junior engineer senior engineer.html" title="Junior Engineer Senior Engineer">Junior Engineer Senior Engineer</a></li>
+                
+                
+                <li><a href="/unfair-contraction/30-to stay or to go/30-to stay or to go.html" title="To Stay Or To Go">To Stay Or To Go</a></li>
+                
+                
+                <li><a href="/unfair-contraction/31-quiz yourself on from junior to senior/31-quiz yourself on from junior to senior.html" title="Quiz Yourself On From Junior To Senior">Quiz Yourself On From Junior To Senior</a></li>
+                
+                
+                <li><a href="/unfair-contraction/32-introduction senior developer/32-introduction senior developer.html" title="Introduction Senior Developer">Introduction Senior Developer</a></li>
+                
+                
+                <li><a href="/unfair-contraction/33-solutions vs patterns/33-solutions vs patterns.html" title="Solutions Vs Patterns">Solutions Vs Patterns</a></li>
+                
+                
+                <li><a href="/unfair-contraction/34-velocity vs maintainability/34-velocity vs maintainability.html" title="Velocity Vs Maintainability">Velocity Vs Maintainability</a></li>
+                
+                
+                <li><a href="/unfair-contraction/35-technical debt/35-technical debt.html" title="Technical Debt">Technical Debt</a></li>
+                
+                
+                <li><a href="/unfair-contraction/36-prudent debt/36-prudent debt.html" title="Prudent Debt">Prudent Debt</a></li>
+                
+                
+                <li><a href="/unfair-contraction/37-reckless debt/37-reckless debt.html" title="Reckless Debt">Reckless Debt</a></li>
+                
+                
+                <li><a href="/unfair-contraction/38-mentorship allyship and sponsorship/38-mentorship allyship and sponsorship.html" title="Mentorship Allyship And Sponsorship">Mentorship Allyship And Sponsorship</a></li>
+                
+                
+                <li><a href="/unfair-contraction/39-business impact/39-business impact.html" title="Business Impact">Business Impact</a></li>
+                
+                
+                <li><a href="/unfair-contraction/40-quiz yourself on senior developer/40-quiz yourself on senior developer.html" title="Quiz Yourself On Senior Developer">Quiz Yourself On Senior Developer</a></li>
+                
+                
+                <li><a href="/unfair-contraction/41-introduction beyond your coding career/41-introduction beyond your coding career.html" title="Introduction Beyond Your Coding Career">Introduction Beyond Your Coding Career</a></li>
+                
+                
+                <li><a href="/unfair-contraction/42-engineering management/42-engineering management.html" title="Engineering Management">Engineering Management</a></li>
+                
+                
+                <li><a href="/unfair-contraction/43-product management/43-product management.html" title="Product Management">Product Management</a></li>
+                
+                
+                <li><a href="/unfair-contraction/44-developer relations/44-developer relations.html" title="Developer Relations">Developer Relations</a></li>
+                
+                
+                <li><a href="/unfair-contraction/45-developer educator/45-developer educator.html" title="Developer Educator">Developer Educator</a></li>
+                
+                
+                <li><a href="/unfair-contraction/46-entrepreneurship/46-entrepreneurship.html" title="Entrepreneurship">Entrepreneurship</a></li>
+                
+                
+                <li><a href="/unfair-contraction/47-quiz yourself on beyond your coding career/47-quiz yourself on beyond your coding career.html" title="Quiz Yourself On Beyond Your Coding Career">Quiz Yourself On Beyond Your Coding Career</a></li>
+                
+                
+                <li><a href="/unfair-contraction/48-principles/48-principles.html" title="Principles">Principles</a></li>
+                
+                
+                <li><a href="/unfair-contraction/49-private vs public/49-private vs public.html" title="Private Vs Public">Private Vs Public</a></li>
+                
+                
+                <li><a href="/unfair-contraction/50-getting started/50-getting started.html" title="Getting Started">Getting Started</a></li>
+                
+                
+                <li><a href="/unfair-contraction/51-but im scared/51-but im scared.html" title="But Im Scared">But Im Scared</a></li>
+                
+                
+                <li><a href="/unfair-contraction/52-teach to learn/52-teach to learn.html" title="Teach To Learn">Teach To Learn</a></li>
+                
+                
+                <li><a href="/unfair-contraction/53-mentors mentees and becoming an expert/53-mentors mentees and becoming an expert.html" title="Mentors Mentees And Becoming An Expert">Mentors Mentees And Becoming An Expert</a></li>
+                
+                
+                <li><a href="/unfair-contraction/54-why it works/54-why it works.html" title="Why It Works">Why It Works</a></li>
+                
+                
+                <li><a href="/unfair-contraction/55-quiz yourself on learn in public/55-quiz yourself on learn in public.html" title="Quiz Yourself On Learn In Public">Quiz Yourself On Learn In Public</a></li>
+                
+                
+                <li><a href="/unfair-contraction/56-why clone open source apps/56-why clone open source apps.html" title="Why Clone Open Source Apps">Why Clone Open Source Apps</a></li>
+                
+                
+                <li><a href="/unfair-contraction/57-make it better/57-make it better.html" title="Make It Better">Make It Better</a></li>
+                
+                
+                <li><a href="/unfair-contraction/58-introduction know your tools/58-introduction know your tools.html" title="Introduction Know Your Tools">Introduction Know Your Tools</a></li>
+                
+                
+                <li><a href="/unfair-contraction/59-avoid fear of missing out fomo/59-avoid fear of missing out fomo.html" title="Avoid Fear Of Missing Out Fomo">Avoid Fear Of Missing Out Fomo</a></li>
+                
+                
+                <li><a href="/unfair-contraction/60-beyond the tool/60-beyond the tool.html" title="Beyond The Tool">Beyond The Tool</a></li>
+                
+                
+                <li><a href="/unfair-contraction/61-quiz yourself on know your tools/61-quiz yourself on know your tools.html" title="Quiz Yourself On Know Your Tools">Quiz Yourself On Know Your Tools</a></li>
+                
+                
+                <li><a href="/unfair-contraction/62-introduction specialize in the new/62-introduction specialize in the new.html" title="Introduction Specialize In The New">Introduction Specialize In The New</a></li>
+                
+                
+                <li><a href="/unfair-contraction/63-technology complements/63-technology complements.html" title="Technology Complements">Technology Complements</a></li>
+                
+                
+                <li><a href="/unfair-contraction/64-lindy compounding/64-lindy compounding.html" title="Lindy Compounding">Lindy Compounding</a></li>
+                
+                
+                <li><a href="/unfair-contraction/65-quiz yourself on specialize in the new/65-quiz yourself on specialize in the new.html" title="Quiz Yourself On Specialize In The New">Quiz Yourself On Specialize In The New</a></li>
+                
+                
+                <li><a href="/unfair-contraction/66-introduction open source your knowledge/66-introduction open source your knowledge.html" title="Introduction Open Source Your Knowledge">Introduction Open Source Your Knowledge</a></li>
+                
+                
+                <li><a href="/unfair-contraction/67-open knowledge/67-open knowledge.html" title="Open Knowledge">Open Knowledge</a></li>
+                
+                
+                <li><a href="/unfair-contraction/68-open source knowledge/68-open source knowledge.html" title="Open Source Knowledge">Open Source Knowledge</a></li>
+                
+                
+                <li><a href="/unfair-contraction/69-personal anecdote/69-personal anecdote.html" title="Personal Anecdote">Personal Anecdote</a></li>
+                
+                
+                <li><a href="/unfair-contraction/70-why open source your knowledge/70-why open source your knowledge.html" title="Why Open Source Your Knowledge">Why Open Source Your Knowledge</a></li>
+                
+                
+                <li><a href="/unfair-contraction/71-tips/71-tips.html" title="Tips">Tips</a></li>
+                
+                
+                <li><a href="/unfair-contraction/72-quiz yourself on open source your knowledge/72-quiz yourself on open source your knowledge.html" title="Quiz Yourself On Open Source Your Knowledge">Quiz Yourself On Open Source Your Knowledge</a></li>
+                
+                
+                <li><a href="/unfair-contraction/73-introduction spark joy/73-introduction spark joy.html" title="Introduction Spark Joy">Introduction Spark Joy</a></li>
+                
+                
+                <li><a href="/unfair-contraction/74-why it works/74-why it works.html" title="Why It Works">Why It Works</a></li>
+                
+                
+                <li><a href="/unfair-contraction/75-sparking joy in code/75-sparking joy in code.html" title="Sparking Joy In Code">Sparking Joy In Code</a></li>
+                
+                
+                <li><a href="/unfair-contraction/76-sparking joy in prs and issues/76-sparking joy in prs and issues.html" title="Sparking Joy In Prs And Issues">Sparking Joy In Prs And Issues</a></li>
+                
+                
+                <li><a href="/unfair-contraction/77-sparking joy in docs/77-sparking joy in docs.html" title="Sparking Joy In Docs">Sparking Joy In Docs</a></li>
+                
+                
+                <li><a href="/unfair-contraction/78-sparking joy in demos and products/78-sparking joy in demos and products.html" title="Sparking Joy In Demos And Products">Sparking Joy In Demos And Products</a></li>
+                
+                
+                <li><a href="/unfair-contraction/79-the extra mile/79-the extra mile.html" title="The Extra Mile">The Extra Mile</a></li>
+                
+                
+                <li><a href="/unfair-contraction/80-quiz yourself on spark joy/80-quiz yourself on spark joy.html" title="Quiz Yourself On Spark Joy">Quiz Yourself On Spark Joy</a></li>
+                
+                
+                <li><a href="/unfair-contraction/81-the platinum rule/81-the platinum rule.html" title="The Platinum Rule">The Platinum Rule</a></li>
+                
+                
+                <li><a href="/unfair-contraction/82-the silver rule/82-the silver rule.html" title="The Silver Rule">The Silver Rule</a></li>
+                
+                
+                <li><a href="/unfair-contraction/83-quiz yourself on the platinum and silver rule/83-quiz yourself on the platinum and silver rule.html" title="Quiz Yourself On The Platinum And Silver Rule">Quiz Yourself On The Platinum And Silver Rule</a></li>
+                
+                
+                <li><a href="/unfair-contraction/84-introduction good enough is better than best/84-introduction good enough is better than best.html" title="Introduction Good Enough Is Better Than Best">Introduction Good Enough Is Better Than Best</a></li>
+                
+                
+                <li><a href="/unfair-contraction/85-the problem with seeking the best/85-the problem with seeking the best.html" title="The Problem With Seeking The Best">The Problem With Seeking The Best</a></li>
+                
+                
+                <li><a href="/unfair-contraction/86-the dangers of false confidence/86-the dangers of false confidence.html" title="The Dangers Of False Confidence">The Dangers Of False Confidence</a></li>
+                
+                
+                <li><a href="/unfair-contraction/87-quiz yourself on good enough is better than best/87-quiz yourself on good enough is better than best.html" title="Quiz Yourself On Good Enough Is Better Than Best">Quiz Yourself On Good Enough Is Better Than Best</a></li>
+                
+                
+                <li><a href="/unfair-contraction/88-introduction first principles thinking/88-introduction first principles thinking.html" title="Introduction First Principles Thinking">Introduction First Principles Thinking</a></li>
+                
+                
+                <li><a href="/unfair-contraction/89-logic/89-logic.html" title="Logic">Logic</a></li>
+                
+                
+                <li><a href="/unfair-contraction/90-epistemology/90-epistemology.html" title="Epistemology">Epistemology</a></li>
+                
+                
+                <li><a href="/unfair-contraction/91-applications/91-applications.html" title="Applications">Applications</a></li>
+                
+                
+                <li><a href="/unfair-contraction/92-quiz yourself on first principles thinking/92-quiz yourself on first principles thinking.html" title="Quiz Yourself On First Principles Thinking">Quiz Yourself On First Principles Thinking</a></li>
+                
+                
+                <li><a href="/unfair-contraction/93-introduction write a lot/93-introduction write a lot.html" title="Introduction Write A Lot">Introduction Write A Lot</a></li>
+                
+                
+                <li><a href="/unfair-contraction/94-why developers write/94-why developers write.html" title="Why Developers Write">Why Developers Write</a></li>
+                
+                
+                <li><a href="/unfair-contraction/95-documentation/95-documentation.html" title="Documentation">Documentation</a></li>
+                
+                
+                <li><a href="/unfair-contraction/96-career capital/96-career capital.html" title="Career Capital">Career Capital</a></li>
+                
+                
+                <li><a href="/unfair-contraction/97-what writing does for you/97-what writing does for you.html" title="What Writing Does For You">What Writing Does For You</a></li>
+                
+                
+                <li><a href="/unfair-contraction/98-how to become a good public writer/98-how to become a good public writer.html" title="How To Become A Good Public Writer">How To Become A Good Public Writer</a></li>
+                
+                
+                <li><a href="/unfair-contraction/99-going public/99-going public.html" title="Going Public">Going Public</a></li>
+                
+                
+                <li><a href="/unfair-contraction/100-the diy ph d/100-the diy ph d.html" title="The Diy Ph D">The Diy Ph D</a></li>
+                
+                
+                <li><a href="/unfair-contraction/101-committing to writing/101-committing to writing.html" title="Committing To Writing">Committing To Writing</a></li>
+                
+                
+                <li><a href="/unfair-contraction/102-quiz yourself on write a lot/102-quiz yourself on write a lot.html" title="Quiz Yourself On Write A Lot">Quiz Yourself On Write A Lot</a></li>
+                
+                
+                <li><a href="/unfair-contraction/103-introduction pick up what they put down/103-introduction pick up what they put down.html" title="Introduction Pick Up What They Put Down">Introduction Pick Up What They Put Down</a></li>
+                
+                
+                <li><a href="/unfair-contraction/104-what happens when you do this/104-what happens when you do this.html" title="What Happens When You Do This">What Happens When You Do This</a></li>
+                
+                
+                <li><a href="/unfair-contraction/105-why does this work on them/105-why does this work on them.html" title="Why Does This Work On Them">Why Does This Work On Them</a></li>
+                
+                
+                <li><a href="/unfair-contraction/106-why does this work on you/106-why does this work on you.html" title="Why Does This Work On You">Why Does This Work On You</a></li>
+                
+                
+                <li><a href="/unfair-contraction/107-quiz yourself on pick up what they put down/107-quiz yourself on pick up what they put down.html" title="Quiz Yourself On Pick Up What They Put Down">Quiz Yourself On Pick Up What They Put Down</a></li>
+                
+                
+                <li><a href="/unfair-contraction/108-strategies/108-strategies.html" title="Strategies">Strategies</a></li>
+                
+                
+                <li><a href="/unfair-contraction/109-strategy in your coding career/109-strategy in your coding career.html" title="Strategy In Your Coding Career">Strategy In Your Coding Career</a></li>
+                
+                
+                <li><a href="/unfair-contraction/110-what is strategy/110-what is strategy.html" title="What Is Strategy">What Is Strategy</a></li>
+                
+                
+                <li><a href="/unfair-contraction/111-how do i use strategy/111-how do i use strategy.html" title="How Do I Use Strategy">How Do I Use Strategy</a></li>
+                
+                
+                <li><a href="/unfair-contraction/112-quiz yourself on intro to strategy/112-quiz yourself on intro to strategy.html" title="Quiz Yourself On Intro To Strategy">Quiz Yourself On Intro To Strategy</a></li>
+                
+                
+                <li><a href="/unfair-contraction/113-explorer/113-explorer.html" title="Explorer">Explorer</a></li>
+                
+                
+                <li><a href="/unfair-contraction/114-settler/114-settler.html" title="Settler">Settler</a></li>
+                
+                
+                <li><a href="/unfair-contraction/115-connector/115-connector.html" title="Connector">Connector</a></li>
+                
+                
+                <li><a href="/unfair-contraction/116-miner/116-miner.html" title="Miner">Miner</a></li>
+                
+                
+                <li><a href="/unfair-contraction/117-why gears/117-why gears.html" title="Why Gears">Why Gears</a></li>
+                
+                
+                <li><a href="/unfair-contraction/118-quiz yourself on learning gears/118-quiz yourself on learning gears.html" title="Quiz Yourself On Learning Gears">Quiz Yourself On Learning Gears</a></li>
+                
+                
+                <li><a href="/unfair-contraction/119-introduction specialist vs generalist/119-introduction specialist vs generalist.html" title="Introduction Specialist Vs Generalist">Introduction Specialist Vs Generalist</a></li>
+                
+                
+                <li><a href="/unfair-contraction/120-leverage vs self sufficiency/120-leverage vs self sufficiency.html" title="Leverage Vs Self Sufficiency">Leverage Vs Self Sufficiency</a></li>
+                
+                
+                <li><a href="/unfair-contraction/121-the full stack developer/121-the full stack developer.html" title="The Full Stack Developer">The Full Stack Developer</a></li>
+                
+                
+                <li><a href="/unfair-contraction/122-t shaped and pi shaped/122-t shaped and pi shaped.html" title="T Shaped And Pi Shaped">T Shaped And Pi Shaped</a></li>
+                
+                
+                <li><a href="/unfair-contraction/123-look inside not out/123-look inside not out.html" title="Look Inside Not Out">Look Inside Not Out</a></li>
+                
+                
+                <li><a href="/unfair-contraction/124-when in doubt specialize/124-when in doubt specialize.html" title="When In Doubt Specialize">When In Doubt Specialize</a></li>
+                
+                
+                <li><a href="/unfair-contraction/125-quiz yourself on specialist vs generalist/125-quiz yourself on specialist vs generalist.html" title="Quiz Yourself On Specialist Vs Generalist">Quiz Yourself On Specialist Vs Generalist</a></li>
+                
+                
+                <li><a href="/unfair-contraction/126-introduction betting on technologies/126-introduction betting on technologies.html" title="Introduction Betting On Technologies">Introduction Betting On Technologies</a></li>
+                
+                
+                <li><a href="/unfair-contraction/127-data driven investing/127-data driven investing.html" title="Data Driven Investing">Data Driven Investing</a></li>
+                
+                
+                <li><a href="/unfair-contraction/128-how to be early/128-how to be early.html" title="How To Be Early">How To Be Early</a></li>
+                
+                
+                <li><a href="/unfair-contraction/129-the value of values/129-the value of values.html" title="The Value Of Values">The Value Of Values</a></li>
+                
+                
+                <li><a href="/unfair-contraction/130-quiz yourself on betting on technologies/130-quiz yourself on betting on technologies.html" title="Quiz Yourself On Betting On Technologies">Quiz Yourself On Betting On Technologies</a></li>
+                
+                
+                <li><a href="/unfair-contraction/131-introduction profit center vs cost center/131-introduction profit center vs cost center.html" title="Introduction Profit Center Vs Cost Center">Introduction Profit Center Vs Cost Center</a></li>
+                
+                
+                <li><a href="/unfair-contraction/132-definitions profit cost and investment center/132-definitions profit cost and investment center.html" title="Definitions Profit Cost And Investment Center">Definitions Profit Cost And Investment Center</a></li>
+                
+                
+                <li><a href="/unfair-contraction/133-close to the money/133-close to the money.html" title="Close To The Money">Close To The Money</a></li>
+                
+                
+                <li><a href="/unfair-contraction/134-profit center cost center/134-profit center cost center.html" title="Profit Center Cost Center">Profit Center Cost Center</a></li>
+                
+                
+                <li><a href="/unfair-contraction/135-the developers choice/135-the developers choice.html" title="The Developers Choice">The Developers Choice</a></li>
+                
+                
+                <li><a href="/unfair-contraction/136-quiz yourself on profit center vs cost center/136-quiz yourself on profit center vs cost center.html" title="Quiz Yourself On Profit Center Vs Cost Center">Quiz Yourself On Profit Center Vs Cost Center</a></li>
+                
+                
+                <li><a href="/unfair-contraction/137-introduction engineering career ladders/137-introduction engineering career ladders.html" title="Introduction Engineering Career Ladders">Introduction Engineering Career Ladders</a></li>
+                
+                
+                <li><a href="/unfair-contraction/138-when and why to ladder/138-when and why to ladder.html" title="When And Why To Ladder">When And Why To Ladder</a></li>
+                
+                
+                <li><a href="/unfair-contraction/139-what companies want/139-what companies want.html" title="What Companies Want">What Companies Want</a></li>
+                
+                
+                <li><a href="/unfair-contraction/140-individual company ladders/140-individual company ladders.html" title="Individual Company Ladders">Individual Company Ladders</a></li>
+                
+                
+                <li><a href="/unfair-contraction/141-quiz yourself on engineering career ladders/141-quiz yourself on engineering career ladders.html" title="Quiz Yourself On Engineering Career Ladders">Quiz Yourself On Engineering Career Ladders</a></li>
+                
+                
+                <li><a href="/unfair-contraction/142-introduction intro to tech strategy/142-introduction intro to tech strategy.html" title="Introduction Intro To Tech Strategy">Introduction Intro To Tech Strategy</a></li>
+                
+                
+                <li><a href="/unfair-contraction/143-software is eating the world/143-software is eating the world.html" title="Software Is Eating The World">Software Is Eating The World</a></li>
+                
+                
+                <li><a href="/unfair-contraction/144-horizontal vs vertical/144-horizontal vs vertical.html" title="Horizontal Vs Vertical">Horizontal Vs Vertical</a></li>
+                
+                
+                <li><a href="/unfair-contraction/145-business models/145-business models.html" title="Business Models">Business Models</a></li>
+                
+                
+                <li><a href="/unfair-contraction/146-platforms and aggregators/146-platforms and aggregators.html" title="Platforms And Aggregators">Platforms And Aggregators</a></li>
+                
+                
+                <li><a href="/unfair-contraction/147-other strategic perspectives/147-other strategic perspectives.html" title="Other Strategic Perspectives">Other Strategic Perspectives</a></li>
+                
+                
+                <li><a href="/unfair-contraction/148-quiz yourself on intro to tech strategy/148-quiz yourself on intro to tech strategy.html" title="Quiz Yourself On Intro To Tech Strategy">Quiz Yourself On Intro To Tech Strategy</a></li>
+                
+                
+                <li><a href="/unfair-contraction/149-introduction strategic awareness/149-introduction strategic awareness.html" title="Introduction Strategic Awareness">Introduction Strategic Awareness</a></li>
+                
+                
+                <li><a href="/unfair-contraction/150-concern vs influence/150-concern vs influence.html" title="Concern Vs Influence">Concern Vs Influence</a></li>
+                
+                
+                <li><a href="/unfair-contraction/151-levels of concern/151-levels of concern.html" title="Levels Of Concern">Levels Of Concern</a></li>
+                
+                
+                <li><a href="/unfair-contraction/152-bias to action/152-bias to action.html" title="Bias To Action">Bias To Action</a></li>
+                
+                
+                <li><a href="/unfair-contraction/153-understanding technology adoption/153-understanding technology adoption.html" title="Understanding Technology Adoption">Understanding Technology Adoption</a></li>
+                
+                
+                <li><a href="/unfair-contraction/154-technology value chain/154-technology value chain.html" title="Technology Value Chain">Technology Value Chain</a></li>
+                
+                
+                <li><a href="/unfair-contraction/155-systems thinking/155-systems thinking.html" title="Systems Thinking">Systems Thinking</a></li>
+                
+                
+                <li><a href="/unfair-contraction/156-other strategies for strategic awareness/156-other strategies for strategic awareness.html" title="Other Strategies For Strategic Awareness">Other Strategies For Strategic Awareness</a></li>
+                
+                
+                <li><a href="/unfair-contraction/157-quiz yourself on strategic awareness/157-quiz yourself on strategic awareness.html" title="Quiz Yourself On Strategic Awareness">Quiz Yourself On Strategic Awareness</a></li>
+                
+                
+                <li><a href="/unfair-contraction/158-introduction megatrends/158-introduction megatrends.html" title="Introduction Megatrends">Introduction Megatrends</a></li>
+                
+                
+                <li><a href="/unfair-contraction/159-definitions/159-definitions.html" title="Definitions">Definitions</a></li>
+                
+                
+                <li><a href="/unfair-contraction/160-examples of megatrends/160-examples of megatrends.html" title="Examples Of Megatrends">Examples Of Megatrends</a></li>
+                
+                
+                <li><a href="/unfair-contraction/161-building your list of megatrends/161-building your list of megatrends.html" title="Building Your List Of Megatrends">Building Your List Of Megatrends</a></li>
+                
+                
+                <li><a href="/unfair-contraction/162-quiz yourself on megatrends/162-quiz yourself on megatrends.html" title="Quiz Yourself On Megatrends">Quiz Yourself On Megatrends</a></li>
+                
+                
+                <li><a href="/unfair-contraction/163-tactics/163-tactics.html" title="Tactics">Tactics</a></li>
+                
+                
+                <li><a href="/unfair-contraction/164-introduction negotiating/164-introduction negotiating.html" title="Introduction Negotiating">Introduction Negotiating</a></li>
+                
+                
+                <li><a href="/unfair-contraction/165-general advice/165-general advice.html" title="General Advice">General Advice</a></li>
+                
+                
+                <li><a href="/unfair-contraction/166-patrick mckenzie on salary negotiation/166-patrick mckenzie on salary negotiation.html" title="Patrick Mckenzie On Salary Negotiation">Patrick Mckenzie On Salary Negotiation</a></li>
+                
+                
+                <li><a href="/unfair-contraction/167-haseeb qureshi on ten rules for negotiating/167-haseeb qureshi on ten rules for negotiating.html" title="Haseeb Qureshi On Ten Rules For Negotiating">Haseeb Qureshi On Ten Rules For Negotiating</a></li>
+                
+                
+                <li><a href="/unfair-contraction/168-josh doody on fearless salary negotiation/168-josh doody on fearless salary negotiation.html" title="Josh Doody On Fearless Salary Negotiation">Josh Doody On Fearless Salary Negotiation</a></li>
+                
+                
+                <li><a href="/unfair-contraction/169-introduction how to learn in private/169-introduction how to learn in private.html" title="Introduction How To Learn In Private">Introduction How To Learn In Private</a></li>
+                
+                
+                <li><a href="/unfair-contraction/170-improving what you consume/170-improving what you consume.html" title="Improving What You Consume">Improving What You Consume</a></li>
+                
+                
+                <li><a href="/unfair-contraction/171-getting more out of what you consume/171-getting more out of what you consume.html" title="Getting More Out Of What You Consume">Getting More Out Of What You Consume</a></li>
+                
+                
+                <li><a href="/unfair-contraction/172-go meta/172-go meta.html" title="Go Meta">Go Meta</a></li>
+                
+                
+                <li><a href="/unfair-contraction/173-quiz yourself on how to learn in private/173-quiz yourself on how to learn in private.html" title="Quiz Yourself On How To Learn In Private">Quiz Yourself On How To Learn In Private</a></li>
+                
+                
+                <li><a href="/unfair-contraction/174-design for developers in a hurry/174-design for developers in a hurry.html" title="Design For Developers In A Hurry">Design For Developers In A Hurry</a></li>
+                
+                
+                <li><a href="/unfair-contraction/175-spark joy repo/175-spark joy repo.html" title="Spark Joy Repo">Spark Joy Repo</a></li>
+                
+                
+                <li><a href="/unfair-contraction/176-layout/176-layout.html" title="Layout">Layout</a></li>
+                
+                
+                <li><a href="/unfair-contraction/177-typography/177-typography.html" title="Typography">Typography</a></li>
+                
+                
+                <li><a href="/unfair-contraction/178-color palette and backgrounds/178-color palette and backgrounds.html" title="Color Palette And Backgrounds">Color Palette And Backgrounds</a></li>
+                
+                
+                <li><a href="/unfair-contraction/179-icons and illustrations/179-icons and illustrations.html" title="Icons And Illustrations">Icons And Illustrations</a></li>
+                
+                
+                <li><a href="/unfair-contraction/180-easter eggs/180-easter eggs.html" title="Easter Eggs">Easter Eggs</a></li>
+                
+                
+                <li><a href="/unfair-contraction/181-introduction lampshading/181-introduction lampshading.html" title="Introduction Lampshading">Introduction Lampshading</a></li>
+                
+                
+                <li><a href="/unfair-contraction/182-when youre very senior/182-when youre very senior.html" title="When Youre Very Senior">When Youre Very Senior</a></li>
+                
+                
+                <li><a href="/unfair-contraction/183-when youre new/183-when youre new.html" title="When Youre New">When Youre New</a></li>
+                
+                
+                <li><a href="/unfair-contraction/184-storytime/184-storytime.html" title="Storytime">Storytime</a></li>
+                
+                
+                <li><a href="/unfair-contraction/185-lampshading/185-lampshading.html" title="Lampshading">Lampshading</a></li>
+                
+                
+                <li><a href="/unfair-contraction/186-the stupid question safe harbor/186-the stupid question safe harbor.html" title="The Stupid Question Safe Harbor">The Stupid Question Safe Harbor</a></li>
+                
+                
+                <li><a href="/unfair-contraction/187-introduction conference cfps/187-introduction conference cfps.html" title="Introduction Conference Cfps">Introduction Conference Cfps</a></li>
+                
+                
+                <li><a href="/unfair-contraction/188-watch a lot of talks/188-watch a lot of talks.html" title="Watch A Lot Of Talks">Watch A Lot Of Talks</a></li>
+                
+                
+                <li><a href="/unfair-contraction/189-pick a conference/189-pick a conference.html" title="Pick A Conference">Pick A Conference</a></li>
+                
+                
+                <li><a href="/unfair-contraction/190-pick a topic/190-pick a topic.html" title="Pick A Topic">Pick A Topic</a></li>
+                
+                
+                <li><a href="/unfair-contraction/191-pick a genre/191-pick a genre.html" title="Pick A Genre">Pick A Genre</a></li>
+                
+                
+                <li><a href="/unfair-contraction/192-pick a title/192-pick a title.html" title="Pick A Title">Pick A Title</a></li>
+                
+                
+                <li><a href="/unfair-contraction/193-write an abstract/193-write an abstract.html" title="Write An Abstract">Write An Abstract</a></li>
+                
+                
+                <li><a href="/unfair-contraction/194-building a cfp process/194-building a cfp process.html" title="Building A Cfp Process">Building A Cfp Process</a></li>
+                
+                
+                <li><a href="/unfair-contraction/195-example cfps and peer review/195-example cfps and peer review.html" title="Example Cfps And Peer Review">Example Cfps And Peer Review</a></li>
+                
+                
+                <li><a href="/unfair-contraction/196-mise en place writing/196-mise en place writing.html" title="Mise En Place Writing">Mise En Place Writing</a></li>
+                
+                
+                <li><a href="/unfair-contraction/197-writing isnt just writing/197-writing isnt just writing.html" title="Writing Isnt Just Writing">Writing Isnt Just Writing</a></li>
+                
+                
+                <li><a href="/unfair-contraction/198-components of pre writing/198-components of pre writing.html" title="Components Of Pre Writing">Components Of Pre Writing</a></li>
+                
+                
+                <li><a href="/unfair-contraction/199-the pre writing workflow/199-the pre writing workflow.html" title="The Pre Writing Workflow">The Pre Writing Workflow</a></li>
+                
+                
+                <li><a href="/unfair-contraction/200-the infinite kitchen/200-the infinite kitchen.html" title="The Infinite Kitchen">The Infinite Kitchen</a></li>
+                
+                
+                <li><a href="/unfair-contraction/201-improvisation is okay/201-improvisation is okay.html" title="Improvisation Is Okay">Improvisation Is Okay</a></li>
+                
+                
+                <li><a href="/unfair-contraction/202-quiz yourself on mise en place writing/202-quiz yourself on mise en place writing.html" title="Quiz Yourself On Mise En Place Writing">Quiz Yourself On Mise En Place Writing</a></li>
+                
+                
+                <li><a href="/unfair-contraction/203-introduction side projects/203-introduction side projects.html" title="Introduction Side Projects">Introduction Side Projects</a></li>
+                
+                
+                <li><a href="/unfair-contraction/204-code life balance/204-code life balance.html" title="Code Life Balance">Code Life Balance</a></li>
+                
+                
+                <li><a href="/unfair-contraction/205-project ideas/205-project ideas.html" title="Project Ideas">Project Ideas</a></li>
+                
+                
+                <li><a href="/unfair-contraction/206-project advice/206-project advice.html" title="Project Advice">Project Advice</a></li>
+                
+                
+                <li><a href="/unfair-contraction/207-further inspiration/207-further inspiration.html" title="Further Inspiration">Further Inspiration</a></li>
+                
+                
+                <li><a href="/unfair-contraction/208-introduction developers guide to twitter/208-introduction developers guide to twitter.html" title="Introduction Developers Guide To Twitter">Introduction Developers Guide To Twitter</a></li>
+                
+                
+                <li><a href="/unfair-contraction/209-getting started/209-getting started.html" title="Getting Started">Getting Started</a></li>
+                
+                
+                <li><a href="/unfair-contraction/210-what do you want/210-what do you want.html" title="What Do You Want">What Do You Want</a></li>
+                
+                
+                <li><a href="/unfair-contraction/211-what i want from twitter/211-what i want from twitter.html" title="What I Want From Twitter">What I Want From Twitter</a></li>
+                
+                
+                <li><a href="/unfair-contraction/212-your twitter feed/212-your twitter feed.html" title="Your Twitter Feed">Your Twitter Feed</a></li>
+                
+                
+                <li><a href="/unfair-contraction/213-join the conversation/213-join the conversation.html" title="Join The Conversation">Join The Conversation</a></li>
+                
+                
+                <li><a href="/unfair-contraction/214-being helpful on the internet/214-being helpful on the internet.html" title="Being Helpful On The Internet">Being Helpful On The Internet</a></li>
+                
+                
+                <li><a href="/unfair-contraction/215-twitter as a second brain/215-twitter as a second brain.html" title="Twitter As A Second Brain">Twitter As A Second Brain</a></li>
+                
+                
+                <li><a href="/unfair-contraction/216-dealing with haters/216-dealing with haters.html" title="Dealing With Haters">Dealing With Haters</a></li>
+                
+                
+                <li><a href="/unfair-contraction/217-definitely bad ideas/217-definitely bad ideas.html" title="Definitely Bad Ideas">Definitely Bad Ideas</a></li>
+                
+                
+                <li><a href="/unfair-contraction/218-final thoughts/218-final thoughts.html" title="Final Thoughts">Final Thoughts</a></li>
+                
+                
+                <li><a href="/unfair-contraction/219-introduction marketing yourself/219-introduction marketing yourself.html" title="Introduction Marketing Yourself">Introduction Marketing Yourself</a></li>
+                
+                
+                <li><a href="/unfair-contraction/220-you already know what good personal marketing is/220-you already know what good personal marketing is.html" title="You Already Know What Good Personal Marketing Is">You Already Know What Good Personal Marketing Is</a></li>
+                
+                
+                <li><a href="/unfair-contraction/221-personal branding/221-personal branding.html" title="Personal Branding">Personal Branding</a></li>
+                
+                
+                <li><a href="/unfair-contraction/222-personal anecdote time/222-personal anecdote time.html" title="Personal Anecdote Time">Personal Anecdote Time</a></li>
+                
+                
+                <li><a href="/unfair-contraction/223-brand templates/223-brand templates.html" title="Brand Templates">Brand Templates</a></li>
+                
+                
+                <li><a href="/unfair-contraction/224-consistency/224-consistency.html" title="Consistency">Consistency</a></li>
+                
+                
+                <li><a href="/unfair-contraction/225-you need a domain/225-you need a domain.html" title="You Need A Domain">You Need A Domain</a></li>
+                
+                
+                <li><a href="/unfair-contraction/226-picking a domain/226-picking a domain.html" title="Picking A Domain">Picking A Domain</a></li>
+                
+                
+                <li><a href="/unfair-contraction/227-blogging/227-blogging.html" title="Blogging">Blogging</a></li>
+                
+                
+                <li><a href="/unfair-contraction/228-marketing your business value vs your coding skills/228-marketing your business value vs your coding skills.html" title="Marketing Your Business Value Vs Your Coding Skills">Marketing Your Business Value Vs Your Coding Skills</a></li>
+                
+                
+                <li><a href="/unfair-contraction/229-marketing yourself in public/229-marketing yourself in public.html" title="Marketing Yourself In Public">Marketing Yourself In Public</a></li>
+                
+                
+                <li><a href="/unfair-contraction/230-marketing yourself at work/230-marketing yourself at work.html" title="Marketing Yourself At Work">Marketing Yourself At Work</a></li>
+                
+                
+                <li><a href="/unfair-contraction/231-things that do not matter/231-things that do not matter.html" title="Things That Do Not Matter">Things That Do Not Matter</a></li>
+                
+                
+                <li><a href="/unfair-contraction/232-appendix marketing hacks/232-appendix marketing hacks.html" title="Appendix Marketing Hacks">Appendix Marketing Hacks</a></li>
+                
+                
+                <li><a href="/unfair-contraction/233-introduction the operating system of you/233-introduction the operating system of you.html" title="Introduction The Operating System Of You">Introduction The Operating System Of You</a></li>
+                
+                
+                <li><a href="/unfair-contraction/234-coding career habits/234-coding career habits.html" title="Coding Career Habits">Coding Career Habits</a></li>
+                
+                
+                <li><a href="/unfair-contraction/235-your hardware/235-your hardware.html" title="Your Hardware">Your Hardware</a></li>
+                
+                
+                <li><a href="/unfair-contraction/236-your external devices/236-your external devices.html" title="Your External Devices">Your External Devices</a></li>
+                
+                
+                <li><a href="/unfair-contraction/237-your scheduler/237-your scheduler.html" title="Your Scheduler">Your Scheduler</a></li>
+                
+                
+                <li><a href="/unfair-contraction/238-your kernel/238-your kernel.html" title="Your Kernel">Your Kernel</a></li>
+                
+                
+                <li><a href="/unfair-contraction/239-the emotional journey of your coding career/239-the emotional journey of your coding career.html" title="The Emotional Journey Of Your Coding Career">The Emotional Journey Of Your Coding Career</a></li>
+                
+            </ul>
+        </li>
+    </ul>
+</div>
+    </aside>
+    <section class="content" style="overflow-y: auto;">
+      <article class="markdown-section" id="main">
+        <h1 id="class-assignment-title"><a href="/Assignments/Sample_Project?id=class-assignment-title"
+            data-id="class-assignment-title" class="anchor"><span>The Coding Career Handbook - Learn Interactively</span></a></h1>
+        <h2 id="description"><span>Course Overview</span></a></h2>
+        <p>The non-coding part of being a successful software engineer is very important, but also happens to be very under-discussed.
+
+This is a course about getting great coding jobs and doing well at coding jobs. Especially if you're earlier in your career, there's a lot here that you might otherwise take years to learn, and your manager will never tell you.
+
+This is NOT going to be a conventional career advice course. There is a linear discussion of Career Guides, followed by a nonlinear collection of Principles, Strategies, and Tactics - independent essays of ideas that you may or may not agree with but are worth considering anyway.
+
+This course is a conversation starter, not a conversation ender. It will help get you on the right path to being the best engineer and the best you, you can be.</p>
+      </article>
+      <article class="markdown-section" id="main">
+        <h2 id="description"><span>Course Content</span></a></h2>
+        <div class="table-wrapper">
+          <table id="_eiwfoklkm">
+            <thead>
+              <tr>
+                <th align="center">#</th>
+                <th align="center">Lesson</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              
+              <tr>
+                <td align="center">0</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/0-preface real talk/0-preface real talk.html"
+                      title="Preface Real Talk">Preface Real Talk</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">1</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/1-introduction your coding career/1-introduction your coding career.html"
+                      title="Introduction Your Coding Career">Introduction Your Coding Career</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">2</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/2-principles over titles/2-principles over titles.html"
+                      title="Principles Over Titles">Principles Over Titles</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">3</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/3-company types/3-company types.html"
+                      title="Company Types">Company Types</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">4</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/4-career layers/4-career layers.html"
+                      title="Career Layers">Career Layers</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">5</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/5-diversity/5-diversity.html"
+                      title="Diversity">Diversity</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">6</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/6-the five career stages/6-the five career stages.html"
+                      title="The Five Career Stages">The Five Career Stages</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">7</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/7-quiz yourself on your coding career/7-quiz yourself on your coding career.html"
+                      title="Quiz Yourself On Your Coding Career">Quiz Yourself On Your Coding Career</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">8</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/8-introduction code newbies/8-introduction code newbies.html"
+                      title="Introduction Code Newbies">Introduction Code Newbies</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">9</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/9-explore podcasts and content/9-explore podcasts and content.html"
+                      title="Explore Podcasts And Content">Explore Podcasts And Content</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">10</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/10-build community/10-build community.html"
+                      title="Build Community">Build Community</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">11</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/11-gain team experience/11-gain team experience.html"
+                      title="Gain Team Experience">Gain Team Experience</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">12</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/12-introduction the first job hunt/12-introduction the first job hunt.html"
+                      title="Introduction The First Job Hunt">Introduction The First Job Hunt</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">13</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/13-do the math/13-do the math.html"
+                      title="Do The Math">Do The Math</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">14</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/14-do the work/14-do the work.html"
+                      title="Do The Work">Do The Work</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">15</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/15-staying motivated while you search/15-staying motivated while you search.html"
+                      title="Staying Motivated While You Search">Staying Motivated While You Search</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">16</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/16-getting the interview/16-getting the interview.html"
+                      title="Getting The Interview">Getting The Interview</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">17</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/17-types of interviews/17-types of interviews.html"
+                      title="Types Of Interviews">Types Of Interviews</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">18</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/18-outside the interview/18-outside the interview.html"
+                      title="Outside The Interview">Outside The Interview</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">19</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/19-quiz yourself on the first job hunt/19-quiz yourself on the first job hunt.html"
+                      title="Quiz Yourself On The First Job Hunt">Quiz Yourself On The First Job Hunt</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">20</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/20-introduction junior developer/20-introduction junior developer.html"
+                      title="Introduction Junior Developer">Introduction Junior Developer</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">21</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/21-finding your groove/21-finding your groove.html"
+                      title="Finding Your Groove">Finding Your Groove</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">22</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/22-making mistakes/22-making mistakes.html"
+                      title="Making Mistakes">Making Mistakes</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">23</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/23-adding value/23-adding value.html"
+                      title="Adding Value">Adding Value</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">24</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/24-growing your knowledge/24-growing your knowledge.html"
+                      title="Growing Your Knowledge">Growing Your Knowledge</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">25</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/25-quiz yourself on junior developer/25-quiz yourself on junior developer.html"
+                      title="Quiz Yourself On Junior Developer">Quiz Yourself On Junior Developer</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">26</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/26-introduction from junior to senior/26-introduction from junior to senior.html"
+                      title="Introduction From Junior To Senior">Introduction From Junior To Senior</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">27</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/27-acting for the job you want/27-acting for the job you want.html"
+                      title="Acting For The Job You Want">Acting For The Job You Want</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">28</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/28-marketing yourself as a senior engineer/28-marketing yourself as a senior engineer.html"
+                      title="Marketing Yourself As A Senior Engineer">Marketing Yourself As A Senior Engineer</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">29</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/29-junior engineer senior engineer/29-junior engineer senior engineer.html"
+                      title="Junior Engineer Senior Engineer">Junior Engineer Senior Engineer</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">30</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/30-to stay or to go/30-to stay or to go.html"
+                      title="To Stay Or To Go">To Stay Or To Go</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">31</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/31-quiz yourself on from junior to senior/31-quiz yourself on from junior to senior.html"
+                      title="Quiz Yourself On From Junior To Senior">Quiz Yourself On From Junior To Senior</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">32</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/32-introduction senior developer/32-introduction senior developer.html"
+                      title="Introduction Senior Developer">Introduction Senior Developer</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">33</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/33-solutions vs patterns/33-solutions vs patterns.html"
+                      title="Solutions Vs Patterns">Solutions Vs Patterns</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">34</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/34-velocity vs maintainability/34-velocity vs maintainability.html"
+                      title="Velocity Vs Maintainability">Velocity Vs Maintainability</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">35</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/35-technical debt/35-technical debt.html"
+                      title="Technical Debt">Technical Debt</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">36</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/36-prudent debt/36-prudent debt.html"
+                      title="Prudent Debt">Prudent Debt</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">37</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/37-reckless debt/37-reckless debt.html"
+                      title="Reckless Debt">Reckless Debt</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">38</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/38-mentorship allyship and sponsorship/38-mentorship allyship and sponsorship.html"
+                      title="Mentorship Allyship And Sponsorship">Mentorship Allyship And Sponsorship</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">39</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/39-business impact/39-business impact.html"
+                      title="Business Impact">Business Impact</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">40</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/40-quiz yourself on senior developer/40-quiz yourself on senior developer.html"
+                      title="Quiz Yourself On Senior Developer">Quiz Yourself On Senior Developer</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">41</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/41-introduction beyond your coding career/41-introduction beyond your coding career.html"
+                      title="Introduction Beyond Your Coding Career">Introduction Beyond Your Coding Career</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">42</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/42-engineering management/42-engineering management.html"
+                      title="Engineering Management">Engineering Management</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">43</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/43-product management/43-product management.html"
+                      title="Product Management">Product Management</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">44</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/44-developer relations/44-developer relations.html"
+                      title="Developer Relations">Developer Relations</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">45</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/45-developer educator/45-developer educator.html"
+                      title="Developer Educator">Developer Educator</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">46</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/46-entrepreneurship/46-entrepreneurship.html"
+                      title="Entrepreneurship">Entrepreneurship</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">47</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/47-quiz yourself on beyond your coding career/47-quiz yourself on beyond your coding career.html"
+                      title="Quiz Yourself On Beyond Your Coding Career">Quiz Yourself On Beyond Your Coding Career</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">48</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/48-principles/48-principles.html"
+                      title="Principles">Principles</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">49</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/49-private vs public/49-private vs public.html"
+                      title="Private Vs Public">Private Vs Public</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">50</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/50-getting started/50-getting started.html"
+                      title="Getting Started">Getting Started</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">51</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/51-but im scared/51-but im scared.html"
+                      title="But Im Scared">But Im Scared</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">52</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/52-teach to learn/52-teach to learn.html"
+                      title="Teach To Learn">Teach To Learn</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">53</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/53-mentors mentees and becoming an expert/53-mentors mentees and becoming an expert.html"
+                      title="Mentors Mentees And Becoming An Expert">Mentors Mentees And Becoming An Expert</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">54</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/54-why it works/54-why it works.html"
+                      title="Why It Works">Why It Works</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">55</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/55-quiz yourself on learn in public/55-quiz yourself on learn in public.html"
+                      title="Quiz Yourself On Learn In Public">Quiz Yourself On Learn In Public</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">56</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/56-why clone open source apps/56-why clone open source apps.html"
+                      title="Why Clone Open Source Apps">Why Clone Open Source Apps</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">57</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/57-make it better/57-make it better.html"
+                      title="Make It Better">Make It Better</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">58</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/58-introduction know your tools/58-introduction know your tools.html"
+                      title="Introduction Know Your Tools">Introduction Know Your Tools</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">59</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/59-avoid fear of missing out fomo/59-avoid fear of missing out fomo.html"
+                      title="Avoid Fear Of Missing Out Fomo">Avoid Fear Of Missing Out Fomo</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">60</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/60-beyond the tool/60-beyond the tool.html"
+                      title="Beyond The Tool">Beyond The Tool</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">61</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/61-quiz yourself on know your tools/61-quiz yourself on know your tools.html"
+                      title="Quiz Yourself On Know Your Tools">Quiz Yourself On Know Your Tools</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">62</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/62-introduction specialize in the new/62-introduction specialize in the new.html"
+                      title="Introduction Specialize In The New">Introduction Specialize In The New</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">63</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/63-technology complements/63-technology complements.html"
+                      title="Technology Complements">Technology Complements</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">64</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/64-lindy compounding/64-lindy compounding.html"
+                      title="Lindy Compounding">Lindy Compounding</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">65</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/65-quiz yourself on specialize in the new/65-quiz yourself on specialize in the new.html"
+                      title="Quiz Yourself On Specialize In The New">Quiz Yourself On Specialize In The New</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">66</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/66-introduction open source your knowledge/66-introduction open source your knowledge.html"
+                      title="Introduction Open Source Your Knowledge">Introduction Open Source Your Knowledge</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">67</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/67-open knowledge/67-open knowledge.html"
+                      title="Open Knowledge">Open Knowledge</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">68</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/68-open source knowledge/68-open source knowledge.html"
+                      title="Open Source Knowledge">Open Source Knowledge</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">69</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/69-personal anecdote/69-personal anecdote.html"
+                      title="Personal Anecdote">Personal Anecdote</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">70</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/70-why open source your knowledge/70-why open source your knowledge.html"
+                      title="Why Open Source Your Knowledge">Why Open Source Your Knowledge</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">71</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/71-tips/71-tips.html"
+                      title="Tips">Tips</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">72</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/72-quiz yourself on open source your knowledge/72-quiz yourself on open source your knowledge.html"
+                      title="Quiz Yourself On Open Source Your Knowledge">Quiz Yourself On Open Source Your Knowledge</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">73</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/73-introduction spark joy/73-introduction spark joy.html"
+                      title="Introduction Spark Joy">Introduction Spark Joy</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">74</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/74-why it works/74-why it works.html"
+                      title="Why It Works">Why It Works</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">75</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/75-sparking joy in code/75-sparking joy in code.html"
+                      title="Sparking Joy In Code">Sparking Joy In Code</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">76</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/76-sparking joy in prs and issues/76-sparking joy in prs and issues.html"
+                      title="Sparking Joy In Prs And Issues">Sparking Joy In Prs And Issues</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">77</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/77-sparking joy in docs/77-sparking joy in docs.html"
+                      title="Sparking Joy In Docs">Sparking Joy In Docs</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">78</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/78-sparking joy in demos and products/78-sparking joy in demos and products.html"
+                      title="Sparking Joy In Demos And Products">Sparking Joy In Demos And Products</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">79</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/79-the extra mile/79-the extra mile.html"
+                      title="The Extra Mile">The Extra Mile</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">80</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/80-quiz yourself on spark joy/80-quiz yourself on spark joy.html"
+                      title="Quiz Yourself On Spark Joy">Quiz Yourself On Spark Joy</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">81</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/81-the platinum rule/81-the platinum rule.html"
+                      title="The Platinum Rule">The Platinum Rule</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">82</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/82-the silver rule/82-the silver rule.html"
+                      title="The Silver Rule">The Silver Rule</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">83</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/83-quiz yourself on the platinum and silver rule/83-quiz yourself on the platinum and silver rule.html"
+                      title="Quiz Yourself On The Platinum And Silver Rule">Quiz Yourself On The Platinum And Silver Rule</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">84</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/84-introduction good enough is better than best/84-introduction good enough is better than best.html"
+                      title="Introduction Good Enough Is Better Than Best">Introduction Good Enough Is Better Than Best</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">85</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/85-the problem with seeking the best/85-the problem with seeking the best.html"
+                      title="The Problem With Seeking The Best">The Problem With Seeking The Best</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">86</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/86-the dangers of false confidence/86-the dangers of false confidence.html"
+                      title="The Dangers Of False Confidence">The Dangers Of False Confidence</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">87</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/87-quiz yourself on good enough is better than best/87-quiz yourself on good enough is better than best.html"
+                      title="Quiz Yourself On Good Enough Is Better Than Best">Quiz Yourself On Good Enough Is Better Than Best</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">88</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/88-introduction first principles thinking/88-introduction first principles thinking.html"
+                      title="Introduction First Principles Thinking">Introduction First Principles Thinking</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">89</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/89-logic/89-logic.html"
+                      title="Logic">Logic</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">90</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/90-epistemology/90-epistemology.html"
+                      title="Epistemology">Epistemology</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">91</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/91-applications/91-applications.html"
+                      title="Applications">Applications</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">92</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/92-quiz yourself on first principles thinking/92-quiz yourself on first principles thinking.html"
+                      title="Quiz Yourself On First Principles Thinking">Quiz Yourself On First Principles Thinking</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">93</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/93-introduction write a lot/93-introduction write a lot.html"
+                      title="Introduction Write A Lot">Introduction Write A Lot</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">94</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/94-why developers write/94-why developers write.html"
+                      title="Why Developers Write">Why Developers Write</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">95</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/95-documentation/95-documentation.html"
+                      title="Documentation">Documentation</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">96</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/96-career capital/96-career capital.html"
+                      title="Career Capital">Career Capital</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">97</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/97-what writing does for you/97-what writing does for you.html"
+                      title="What Writing Does For You">What Writing Does For You</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">98</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/98-how to become a good public writer/98-how to become a good public writer.html"
+                      title="How To Become A Good Public Writer">How To Become A Good Public Writer</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">99</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/99-going public/99-going public.html"
+                      title="Going Public">Going Public</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">100</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/100-the diy ph d/100-the diy ph d.html"
+                      title="The Diy Ph D">The Diy Ph D</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">101</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/101-committing to writing/101-committing to writing.html"
+                      title="Committing To Writing">Committing To Writing</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">102</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/102-quiz yourself on write a lot/102-quiz yourself on write a lot.html"
+                      title="Quiz Yourself On Write A Lot">Quiz Yourself On Write A Lot</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">103</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/103-introduction pick up what they put down/103-introduction pick up what they put down.html"
+                      title="Introduction Pick Up What They Put Down">Introduction Pick Up What They Put Down</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">104</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/104-what happens when you do this/104-what happens when you do this.html"
+                      title="What Happens When You Do This">What Happens When You Do This</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">105</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/105-why does this work on them/105-why does this work on them.html"
+                      title="Why Does This Work On Them">Why Does This Work On Them</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">106</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/106-why does this work on you/106-why does this work on you.html"
+                      title="Why Does This Work On You">Why Does This Work On You</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">107</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/107-quiz yourself on pick up what they put down/107-quiz yourself on pick up what they put down.html"
+                      title="Quiz Yourself On Pick Up What They Put Down">Quiz Yourself On Pick Up What They Put Down</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">108</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/108-strategies/108-strategies.html"
+                      title="Strategies">Strategies</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">109</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/109-strategy in your coding career/109-strategy in your coding career.html"
+                      title="Strategy In Your Coding Career">Strategy In Your Coding Career</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">110</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/110-what is strategy/110-what is strategy.html"
+                      title="What Is Strategy">What Is Strategy</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">111</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/111-how do i use strategy/111-how do i use strategy.html"
+                      title="How Do I Use Strategy">How Do I Use Strategy</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">112</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/112-quiz yourself on intro to strategy/112-quiz yourself on intro to strategy.html"
+                      title="Quiz Yourself On Intro To Strategy">Quiz Yourself On Intro To Strategy</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">113</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/113-explorer/113-explorer.html"
+                      title="Explorer">Explorer</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">114</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/114-settler/114-settler.html"
+                      title="Settler">Settler</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">115</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/115-connector/115-connector.html"
+                      title="Connector">Connector</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">116</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/116-miner/116-miner.html"
+                      title="Miner">Miner</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">117</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/117-why gears/117-why gears.html"
+                      title="Why Gears">Why Gears</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">118</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/118-quiz yourself on learning gears/118-quiz yourself on learning gears.html"
+                      title="Quiz Yourself On Learning Gears">Quiz Yourself On Learning Gears</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">119</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/119-introduction specialist vs generalist/119-introduction specialist vs generalist.html"
+                      title="Introduction Specialist Vs Generalist">Introduction Specialist Vs Generalist</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">120</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/120-leverage vs self sufficiency/120-leverage vs self sufficiency.html"
+                      title="Leverage Vs Self Sufficiency">Leverage Vs Self Sufficiency</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">121</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/121-the full stack developer/121-the full stack developer.html"
+                      title="The Full Stack Developer">The Full Stack Developer</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">122</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/122-t shaped and pi shaped/122-t shaped and pi shaped.html"
+                      title="T Shaped And Pi Shaped">T Shaped And Pi Shaped</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">123</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/123-look inside not out/123-look inside not out.html"
+                      title="Look Inside Not Out">Look Inside Not Out</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">124</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/124-when in doubt specialize/124-when in doubt specialize.html"
+                      title="When In Doubt Specialize">When In Doubt Specialize</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">125</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/125-quiz yourself on specialist vs generalist/125-quiz yourself on specialist vs generalist.html"
+                      title="Quiz Yourself On Specialist Vs Generalist">Quiz Yourself On Specialist Vs Generalist</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">126</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/126-introduction betting on technologies/126-introduction betting on technologies.html"
+                      title="Introduction Betting On Technologies">Introduction Betting On Technologies</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">127</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/127-data driven investing/127-data driven investing.html"
+                      title="Data Driven Investing">Data Driven Investing</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">128</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/128-how to be early/128-how to be early.html"
+                      title="How To Be Early">How To Be Early</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">129</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/129-the value of values/129-the value of values.html"
+                      title="The Value Of Values">The Value Of Values</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">130</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/130-quiz yourself on betting on technologies/130-quiz yourself on betting on technologies.html"
+                      title="Quiz Yourself On Betting On Technologies">Quiz Yourself On Betting On Technologies</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">131</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/131-introduction profit center vs cost center/131-introduction profit center vs cost center.html"
+                      title="Introduction Profit Center Vs Cost Center">Introduction Profit Center Vs Cost Center</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">132</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/132-definitions profit cost and investment center/132-definitions profit cost and investment center.html"
+                      title="Definitions Profit Cost And Investment Center">Definitions Profit Cost And Investment Center</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">133</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/133-close to the money/133-close to the money.html"
+                      title="Close To The Money">Close To The Money</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">134</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/134-profit center cost center/134-profit center cost center.html"
+                      title="Profit Center Cost Center">Profit Center Cost Center</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">135</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/135-the developers choice/135-the developers choice.html"
+                      title="The Developers Choice">The Developers Choice</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">136</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/136-quiz yourself on profit center vs cost center/136-quiz yourself on profit center vs cost center.html"
+                      title="Quiz Yourself On Profit Center Vs Cost Center">Quiz Yourself On Profit Center Vs Cost Center</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">137</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/137-introduction engineering career ladders/137-introduction engineering career ladders.html"
+                      title="Introduction Engineering Career Ladders">Introduction Engineering Career Ladders</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">138</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/138-when and why to ladder/138-when and why to ladder.html"
+                      title="When And Why To Ladder">When And Why To Ladder</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">139</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/139-what companies want/139-what companies want.html"
+                      title="What Companies Want">What Companies Want</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">140</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/140-individual company ladders/140-individual company ladders.html"
+                      title="Individual Company Ladders">Individual Company Ladders</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">141</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/141-quiz yourself on engineering career ladders/141-quiz yourself on engineering career ladders.html"
+                      title="Quiz Yourself On Engineering Career Ladders">Quiz Yourself On Engineering Career Ladders</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">142</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/142-introduction intro to tech strategy/142-introduction intro to tech strategy.html"
+                      title="Introduction Intro To Tech Strategy">Introduction Intro To Tech Strategy</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">143</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/143-software is eating the world/143-software is eating the world.html"
+                      title="Software Is Eating The World">Software Is Eating The World</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">144</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/144-horizontal vs vertical/144-horizontal vs vertical.html"
+                      title="Horizontal Vs Vertical">Horizontal Vs Vertical</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">145</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/145-business models/145-business models.html"
+                      title="Business Models">Business Models</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">146</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/146-platforms and aggregators/146-platforms and aggregators.html"
+                      title="Platforms And Aggregators">Platforms And Aggregators</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">147</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/147-other strategic perspectives/147-other strategic perspectives.html"
+                      title="Other Strategic Perspectives">Other Strategic Perspectives</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">148</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/148-quiz yourself on intro to tech strategy/148-quiz yourself on intro to tech strategy.html"
+                      title="Quiz Yourself On Intro To Tech Strategy">Quiz Yourself On Intro To Tech Strategy</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">149</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/149-introduction strategic awareness/149-introduction strategic awareness.html"
+                      title="Introduction Strategic Awareness">Introduction Strategic Awareness</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">150</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/150-concern vs influence/150-concern vs influence.html"
+                      title="Concern Vs Influence">Concern Vs Influence</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">151</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/151-levels of concern/151-levels of concern.html"
+                      title="Levels Of Concern">Levels Of Concern</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">152</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/152-bias to action/152-bias to action.html"
+                      title="Bias To Action">Bias To Action</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">153</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/153-understanding technology adoption/153-understanding technology adoption.html"
+                      title="Understanding Technology Adoption">Understanding Technology Adoption</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">154</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/154-technology value chain/154-technology value chain.html"
+                      title="Technology Value Chain">Technology Value Chain</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">155</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/155-systems thinking/155-systems thinking.html"
+                      title="Systems Thinking">Systems Thinking</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">156</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/156-other strategies for strategic awareness/156-other strategies for strategic awareness.html"
+                      title="Other Strategies For Strategic Awareness">Other Strategies For Strategic Awareness</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">157</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/157-quiz yourself on strategic awareness/157-quiz yourself on strategic awareness.html"
+                      title="Quiz Yourself On Strategic Awareness">Quiz Yourself On Strategic Awareness</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">158</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/158-introduction megatrends/158-introduction megatrends.html"
+                      title="Introduction Megatrends">Introduction Megatrends</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">159</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/159-definitions/159-definitions.html"
+                      title="Definitions">Definitions</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">160</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/160-examples of megatrends/160-examples of megatrends.html"
+                      title="Examples Of Megatrends">Examples Of Megatrends</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">161</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/161-building your list of megatrends/161-building your list of megatrends.html"
+                      title="Building Your List Of Megatrends">Building Your List Of Megatrends</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">162</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/162-quiz yourself on megatrends/162-quiz yourself on megatrends.html"
+                      title="Quiz Yourself On Megatrends">Quiz Yourself On Megatrends</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">163</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/163-tactics/163-tactics.html"
+                      title="Tactics">Tactics</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">164</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/164-introduction negotiating/164-introduction negotiating.html"
+                      title="Introduction Negotiating">Introduction Negotiating</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">165</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/165-general advice/165-general advice.html"
+                      title="General Advice">General Advice</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">166</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/166-patrick mckenzie on salary negotiation/166-patrick mckenzie on salary negotiation.html"
+                      title="Patrick Mckenzie On Salary Negotiation">Patrick Mckenzie On Salary Negotiation</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">167</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/167-haseeb qureshi on ten rules for negotiating/167-haseeb qureshi on ten rules for negotiating.html"
+                      title="Haseeb Qureshi On Ten Rules For Negotiating">Haseeb Qureshi On Ten Rules For Negotiating</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">168</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/168-josh doody on fearless salary negotiation/168-josh doody on fearless salary negotiation.html"
+                      title="Josh Doody On Fearless Salary Negotiation">Josh Doody On Fearless Salary Negotiation</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">169</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/169-introduction how to learn in private/169-introduction how to learn in private.html"
+                      title="Introduction How To Learn In Private">Introduction How To Learn In Private</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">170</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/170-improving what you consume/170-improving what you consume.html"
+                      title="Improving What You Consume">Improving What You Consume</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">171</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/171-getting more out of what you consume/171-getting more out of what you consume.html"
+                      title="Getting More Out Of What You Consume">Getting More Out Of What You Consume</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">172</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/172-go meta/172-go meta.html"
+                      title="Go Meta">Go Meta</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">173</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/173-quiz yourself on how to learn in private/173-quiz yourself on how to learn in private.html"
+                      title="Quiz Yourself On How To Learn In Private">Quiz Yourself On How To Learn In Private</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">174</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/174-design for developers in a hurry/174-design for developers in a hurry.html"
+                      title="Design For Developers In A Hurry">Design For Developers In A Hurry</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">175</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/175-spark joy repo/175-spark joy repo.html"
+                      title="Spark Joy Repo">Spark Joy Repo</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">176</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/176-layout/176-layout.html"
+                      title="Layout">Layout</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">177</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/177-typography/177-typography.html"
+                      title="Typography">Typography</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">178</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/178-color palette and backgrounds/178-color palette and backgrounds.html"
+                      title="Color Palette And Backgrounds">Color Palette And Backgrounds</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">179</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/179-icons and illustrations/179-icons and illustrations.html"
+                      title="Icons And Illustrations">Icons And Illustrations</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">180</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/180-easter eggs/180-easter eggs.html"
+                      title="Easter Eggs">Easter Eggs</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">181</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/181-introduction lampshading/181-introduction lampshading.html"
+                      title="Introduction Lampshading">Introduction Lampshading</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">182</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/182-when youre very senior/182-when youre very senior.html"
+                      title="When Youre Very Senior">When Youre Very Senior</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">183</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/183-when youre new/183-when youre new.html"
+                      title="When Youre New">When Youre New</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">184</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/184-storytime/184-storytime.html"
+                      title="Storytime">Storytime</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">185</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/185-lampshading/185-lampshading.html"
+                      title="Lampshading">Lampshading</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">186</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/186-the stupid question safe harbor/186-the stupid question safe harbor.html"
+                      title="The Stupid Question Safe Harbor">The Stupid Question Safe Harbor</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">187</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/187-introduction conference cfps/187-introduction conference cfps.html"
+                      title="Introduction Conference Cfps">Introduction Conference Cfps</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">188</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/188-watch a lot of talks/188-watch a lot of talks.html"
+                      title="Watch A Lot Of Talks">Watch A Lot Of Talks</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">189</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/189-pick a conference/189-pick a conference.html"
+                      title="Pick A Conference">Pick A Conference</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">190</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/190-pick a topic/190-pick a topic.html"
+                      title="Pick A Topic">Pick A Topic</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">191</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/191-pick a genre/191-pick a genre.html"
+                      title="Pick A Genre">Pick A Genre</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">192</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/192-pick a title/192-pick a title.html"
+                      title="Pick A Title">Pick A Title</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">193</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/193-write an abstract/193-write an abstract.html"
+                      title="Write An Abstract">Write An Abstract</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">194</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/194-building a cfp process/194-building a cfp process.html"
+                      title="Building A Cfp Process">Building A Cfp Process</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">195</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/195-example cfps and peer review/195-example cfps and peer review.html"
+                      title="Example Cfps And Peer Review">Example Cfps And Peer Review</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">196</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/196-mise en place writing/196-mise en place writing.html"
+                      title="Mise En Place Writing">Mise En Place Writing</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">197</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/197-writing isnt just writing/197-writing isnt just writing.html"
+                      title="Writing Isnt Just Writing">Writing Isnt Just Writing</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">198</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/198-components of pre writing/198-components of pre writing.html"
+                      title="Components Of Pre Writing">Components Of Pre Writing</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">199</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/199-the pre writing workflow/199-the pre writing workflow.html"
+                      title="The Pre Writing Workflow">The Pre Writing Workflow</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">200</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/200-the infinite kitchen/200-the infinite kitchen.html"
+                      title="The Infinite Kitchen">The Infinite Kitchen</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">201</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/201-improvisation is okay/201-improvisation is okay.html"
+                      title="Improvisation Is Okay">Improvisation Is Okay</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">202</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/202-quiz yourself on mise en place writing/202-quiz yourself on mise en place writing.html"
+                      title="Quiz Yourself On Mise En Place Writing">Quiz Yourself On Mise En Place Writing</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">203</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/203-introduction side projects/203-introduction side projects.html"
+                      title="Introduction Side Projects">Introduction Side Projects</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">204</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/204-code life balance/204-code life balance.html"
+                      title="Code Life Balance">Code Life Balance</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">205</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/205-project ideas/205-project ideas.html"
+                      title="Project Ideas">Project Ideas</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">206</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/206-project advice/206-project advice.html"
+                      title="Project Advice">Project Advice</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">207</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/207-further inspiration/207-further inspiration.html"
+                      title="Further Inspiration">Further Inspiration</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">208</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/208-introduction developers guide to twitter/208-introduction developers guide to twitter.html"
+                      title="Introduction Developers Guide To Twitter">Introduction Developers Guide To Twitter</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">209</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/209-getting started/209-getting started.html"
+                      title="Getting Started">Getting Started</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">210</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/210-what do you want/210-what do you want.html"
+                      title="What Do You Want">What Do You Want</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">211</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/211-what i want from twitter/211-what i want from twitter.html"
+                      title="What I Want From Twitter">What I Want From Twitter</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">212</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/212-your twitter feed/212-your twitter feed.html"
+                      title="Your Twitter Feed">Your Twitter Feed</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">213</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/213-join the conversation/213-join the conversation.html"
+                      title="Join The Conversation">Join The Conversation</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">214</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/214-being helpful on the internet/214-being helpful on the internet.html"
+                      title="Being Helpful On The Internet">Being Helpful On The Internet</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">215</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/215-twitter as a second brain/215-twitter as a second brain.html"
+                      title="Twitter As A Second Brain">Twitter As A Second Brain</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">216</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/216-dealing with haters/216-dealing with haters.html"
+                      title="Dealing With Haters">Dealing With Haters</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">217</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/217-definitely bad ideas/217-definitely bad ideas.html"
+                      title="Definitely Bad Ideas">Definitely Bad Ideas</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">218</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/218-final thoughts/218-final thoughts.html"
+                      title="Final Thoughts">Final Thoughts</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">219</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/219-introduction marketing yourself/219-introduction marketing yourself.html"
+                      title="Introduction Marketing Yourself">Introduction Marketing Yourself</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">220</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/220-you already know what good personal marketing is/220-you already know what good personal marketing is.html"
+                      title="You Already Know What Good Personal Marketing Is">You Already Know What Good Personal Marketing Is</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">221</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/221-personal branding/221-personal branding.html"
+                      title="Personal Branding">Personal Branding</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">222</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/222-personal anecdote time/222-personal anecdote time.html"
+                      title="Personal Anecdote Time">Personal Anecdote Time</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">223</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/223-brand templates/223-brand templates.html"
+                      title="Brand Templates">Brand Templates</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">224</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/224-consistency/224-consistency.html"
+                      title="Consistency">Consistency</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">225</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/225-you need a domain/225-you need a domain.html"
+                      title="You Need A Domain">You Need A Domain</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">226</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/226-picking a domain/226-picking a domain.html"
+                      title="Picking A Domain">Picking A Domain</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">227</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/227-blogging/227-blogging.html"
+                      title="Blogging">Blogging</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">228</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/228-marketing your business value vs your coding skills/228-marketing your business value vs your coding skills.html"
+                      title="Marketing Your Business Value Vs Your Coding Skills">Marketing Your Business Value Vs Your Coding Skills</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">229</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/229-marketing yourself in public/229-marketing yourself in public.html"
+                      title="Marketing Yourself In Public">Marketing Yourself In Public</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">230</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/230-marketing yourself at work/230-marketing yourself at work.html"
+                      title="Marketing Yourself At Work">Marketing Yourself At Work</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">231</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/231-things that do not matter/231-things that do not matter.html"
+                      title="Things That Do Not Matter">Things That Do Not Matter</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">232</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/232-appendix marketing hacks/232-appendix marketing hacks.html"
+                      title="Appendix Marketing Hacks">Appendix Marketing Hacks</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">233</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/233-introduction the operating system of you/233-introduction the operating system of you.html"
+                      title="Introduction The Operating System Of You">Introduction The Operating System Of You</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">234</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/234-coding career habits/234-coding career habits.html"
+                      title="Coding Career Habits">Coding Career Habits</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">235</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/235-your hardware/235-your hardware.html"
+                      title="Your Hardware">Your Hardware</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">236</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/236-your external devices/236-your external devices.html"
+                      title="Your External Devices">Your External Devices</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">237</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/237-your scheduler/237-your scheduler.html"
+                      title="Your Scheduler">Your Scheduler</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">238</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/238-your kernel/238-your kernel.html"
+                      title="Your Kernel">Your Kernel</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">239</td>
+                <td align="center">
+                  <strong>
+                    <a href="/unfair-contraction/239-the emotional journey of your coding career/239-the emotional journey of your coding career.html"
+                      title="The Emotional Journey Of Your Coding Career">The Emotional Journey Of Your Coding Career</a>
+                  </strong>
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+  </main>
+  <!-- UPDATE: Make sure to update NAME, REPO, and NAMESPACE below-->
+  <script>
+
+  </script>
+  <script src="/unfair-contraction/static/docsify.min.js"></script>
+  <script src="/unfair-contraction/static/index.js"></script>
+  <script src="/unfair-contraction/static/emoji.min.js"></script>
+  <script src="/unfair-contraction/static/external-script.min.js"></script>
+  <script src="/unfair-contraction/static/docsify-copy-code@2"></script>
+  <script src="/unfair-contraction/static/docsify-tabs@1"></script>
+  <script src="/unfair-contraction/static/docsify-plugin-flexible-alerts"></script>
+  <script src="/unfair-contraction/static/prism-bash.min.js"></script>
+  <script src="/unfair-contraction/static/prism-handlebars.min.js"></script>
+  <script src="/unfair-contraction/static/prism-javascript.min.js"></script>
+  <script src="/unfair-contraction/static/prism-json.min.js"></script>
+  <script src="/unfair-contraction/static/prism-markdown.min.js"></script>
+  <script src="/unfair-contraction/static/index.min.js" type="text/javascript">
+  </script>
+</body>
+
+</html>
